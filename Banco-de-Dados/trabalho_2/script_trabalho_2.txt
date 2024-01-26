@@ -1,0 +1,31 @@
+# criar um banco de dados chamado BlogDB
+create database BlogDB;
+use BlogDB;
+
+
+# Criar tabelas:
+
+CREATE TABLE Post(
+	PostID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	Titulo VARCHAR(30) NOT NULL,
+	Conteudo VARCHAR(300) NOT NULL,
+	Data_de_Publicacao DATE NOT NULL,
+	AutorID INT,
+	CONSTRAINT fk_post_tem_um_autor FOREIGN KEY(AutorID) REFERENCES Autor(AutorID)
+);
+
+CREATE TABLE Autor(
+	AutorID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	Nome_Autor VARCHAR(30) NOT NULL,
+	Email VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE Comentario(
+	ComentarioID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	Texto_Comentario VARCHAR(300) NOT NULL,
+	Data_do_Comentario DATE NOT NULL,
+	AutorID INT,
+	PostID INT,
+	CONSTRAINT fk_comentario_tem_um_autor FOREIGN KEY(AutorID) REFERENCES Autor(AutorID),
+	CONSTRAINT fk_comentario_tem_um_post FOREIGN KEY(PostID) REFERENCES Post(PostID)
+);
