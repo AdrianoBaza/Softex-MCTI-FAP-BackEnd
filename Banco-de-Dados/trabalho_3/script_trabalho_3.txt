@@ -1,0 +1,36 @@
+--a. cria o banco de dados
+create database loja_eletronicos;
+
+--b. acessa o banco de dados
+use loja_eletronicos;
+
+--1. Cria tabela Produtos
+create table Produtos (
+ProdutoID INT PRIMARY KEY UNSIGNED AUTO_INCREMENT NOT NULL,
+Nome_do_produto VARCHAR(40) NOT NULL,
+Preco DOUBLE NOT NULL DEFAULT '0',
+Quantidade_em_estoque INT UNSIGNED NOT NULL DEFAULT '0'
+);
+
+
+-- 2. insere em Produtos
+INSERT INTO Produtos (Nome_do_produto, Preco, Quantidade_em_estoque) 
+VALUES 
+('Smartphone', 799.99, 20),
+('Tablet', 349.99, 10),
+('Fone de Ouvido', 49.99, 50);
+
+-- 3. atualiza estoque em Produtos
+UPDATE Produtos SET Quantidade_em_estoque = 25, Preco = 849.99 where ProdutoID = 1;
+
+-- 4. vende produto em Produtos
+UPDATE Produtos
+SET Quantidade_em_estoque = Quantidade_em_estoque - 5
+WHERE ProdutoID = 2;
+
+UPDATE Produtos
+SET Quantidade_em_estoque = Quantidade_em_estoque - 10
+WHERE ProdutoID = 3;
+
+-- 5. consulta tabela Produtos atualizada
+select * from Produtos;
